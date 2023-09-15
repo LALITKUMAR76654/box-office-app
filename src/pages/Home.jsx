@@ -1,9 +1,13 @@
 import { useState } from 'react';
+import { searchForShows } from '../api/tvmaze';
 // import { Link } from 'react-router-dom';
 const Home = () => {
   // return <div>Home page</div>;
   // const [inputValue, setInputValue] = useState('');
   const [searchStr, setSearchStr] = useState('');
+  const [apiData, setApiData] = useState(null);
+  const [apiDataError, setApiDataError] = useState(null);
+  // console.log(apiDataError);
 
   // console.log(inputValue);
   const onSearchInputChange = ev => {
@@ -15,15 +19,41 @@ const Home = () => {
   const onSearch = async ev => {
     ev.preventDefault();
 
-    const response = await fetch(
-      `https://api.tvmaze.com/search/shows?q=${searchStr}`
-      // 'https://api.tvmaze.com/search/shows?q=boys'
-    );
-    const body = await response.json();
+    try {
+      setApiDataError(null);
 
-    console.log(body);
+      const result = await searchForShows(searchStr);
+      setApiData(result);
+    } catch (error) {
+      setApiDataError(error);
+    }
+
+    // console.log(apiData);
+
+    // const body = await apiGet(`/search/shows?q=${searchStr}`);
+    // const response = await fetch(
+    //   `https://api.tvmaze.com/search/shows?q=${searchStr}`
+    //   // 'https://api.tvmaze.com/search/shows?q=boys'
+    // );
+    // const body = await response.json();
+
+    // console.log(body);
     //     .then(response => response.json())
     //     .then(body => console.log(body));
+  };
+
+  const renderApiData = () => {
+    if (apiDataError) {
+      return <div>Error occured:{apiDataError.message}</div>;
+    }
+
+    if (apiData) {
+      return apiData.map(data => (
+        <div key={data.show.id}>{data.show.name}</div>
+      ));
+    }
+
+    return null;
   };
 
   return (
@@ -45,6 +75,8 @@ const Home = () => {
           Search
         </button>
       </form>
+
+      <div>{renderApiData()}</div>
     </div>
   );
 };
