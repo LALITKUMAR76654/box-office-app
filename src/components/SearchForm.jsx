@@ -1,8 +1,27 @@
+// import { useState, useEffect } from 'react';
 import { useState } from 'react';
 
 const SearchForm = ({ onSearch }) => {
   const [searchStr, setSearchStr] = useState('');
   const [searchOption, setSearchOption] = useState('shows');
+
+  // // 1) mounts
+  // // 2) rerender
+  // // 2.5) logic before next rerender
+  // // 3) unmount
+
+  // //useEffect runs atleast once
+
+  // console.log('COMPONANT RERENDER');
+
+  // useEffect(() => {
+  //   // console.log('COMPONANT MOUNTS');
+  //   console.log('SEARCH OPTION CHANGES', searchOption);
+
+  //   return () => {
+  //     console.log('BEFORE NEXT USEEFFECT RUN ', searchOption);
+  //   };
+  // }, [searchOption]);
 
   const onSearchInputChange = ev => {
     // console.log(ev.target.value);
