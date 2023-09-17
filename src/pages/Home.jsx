@@ -6,11 +6,39 @@ import SearchForm from '../components/SearchForm';
 import ShowGrid from '../components/shows/ShowGrid';
 import ActorsGrid from '../components/actors/ActorsGrid';
 // import { Link } from 'react-router-dom';
+
+// const reducerFn = (currentCounter, action) => {
+//   // console.log({ currentCounter, action });
+
+//   switch (action.type) {
+//     case 'INCREMENT':
+//       return currentCounter + 1;
+
+//     case 'DECREMENT':
+//       return currentCounter - 1;
+
+//     case 'RESET':
+//       return 0;
+//   }
+//   return 0;
+// };
+
 const Home = () => {
   // return <div>Home page</div>;
   // const [inputValue, setInputValue] = useState('');
 
   const [filter, setFilter] = useState('');
+  // const [counter, dispatch] = useReducer(reducerFn, 0);
+
+  // const onIncrement = () => {
+  //   dispatch({ type: 'INCREMENT' });
+  // };
+  // const onDecrement = () => {
+  //   dispatch({ type: 'DECREMENT' });
+  // };
+  // const onReset = () => {
+  //   dispatch({ type: 'RESET' });
+  // };
 
   const { data: apiData, error: apiDataError } = useQuery({
     queryKey: ['search', filter],
@@ -102,6 +130,16 @@ const Home = () => {
 
       <SearchForm onSearch={onSearch} />
 
+      {/* <div>Counter: {counter}</div>
+      <button type="button" onClick={onIncrement}>
+        Increment
+      </button>
+      <button type="button" onClick={onDecrement}>
+        Decrement
+      </button>
+      <button type="button" onClick={onReset}>
+        Reset
+      </button> */}
       <div>{renderApiData()}</div>
     </div>
   );
