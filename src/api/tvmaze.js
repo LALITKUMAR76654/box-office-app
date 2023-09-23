@@ -14,3 +14,15 @@ export const searchForPeople = query => apiGet(`/search/people?q=${query}`);
 
 export const getShowById = showId =>
   apiGet(`/shows/${showId}?embed[]=seasons&embed[]=cast`);
+
+export const getShowsByIds = async showIds => {
+  const promises = showIds.map(showId => apiGet(`/shows/${showId}`));
+
+  return Promise.all(promises);
+
+  // const result = await Promise.all(promises);
+
+  // console.log('result', result);
+
+  // return result;
+};
