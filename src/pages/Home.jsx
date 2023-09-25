@@ -1,10 +1,52 @@
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { searchForShows, searchForPeople } from '../api/tvmaze';
-
 import SearchForm from '../components/SearchForm';
 import ShowGrid from '../components/shows/ShowGrid';
 import ActorsGrid from '../components/actors/ActorsGrid';
+// import styled, { css, ThemeProvider } from 'styled-components';
+
+// const theme = {
+//   colors: {
+//     main: 'blue',
+//   },
+// };
+
+// const Container = styled.div`
+//   text-align: center;
+// `;
+
+// const Button = styled.button`
+//   background: transparent;
+//   border-radius: 3px;
+//   border: 2px solid #bf4f74;
+//   color: ${props => props.theme.colors.main};
+//   margin: 0 1em;
+//   padding: 0.25em 1em;
+
+//   ${props =>
+//     props.primary &&
+//     css`
+//       background: palevioletred;
+//       color: white;
+//     `};
+
+//   ${props =>
+//     props.$fontSize &&
+//     css`
+//       font-size: ${props.$fontSize}px;
+//     `};
+// `;
+
+// const Anything = styled.button`
+//   background: transparent;
+//   border-radius: 3px;
+//   border: 2px solid #bf4f74;
+//   color: #bf4f74;
+//   margin: 0 1em;
+//   padding: 0.25em 1em;
+// `;
+
 // import { Link } from 'react-router-dom';
 
 // const reducerFn = (currentCounter, action) => {
@@ -125,11 +167,18 @@ const Home = () => {
     <div>
       {/* <Link to="/starred">Go to starred page</Link> */}
       {/* Home */}
-
       {/* <div>{inputValue}</div> */}
+      {/* <ThemeProvider theme={theme}>
+        <Container>
+          <Button type="button">hello</Button>
 
+          <Button type="button" $fontSize={20}>
+            hello
+          </Button>
+        </Container>
+      </ThemeProvider> */}
+      {/* <Anything type="button">hello</Anything> */}
       <SearchForm onSearch={onSearch} />
-
       {/* <div>Counter: {counter}</div>
       <button type="button" onClick={onIncrement}>
         Increment
